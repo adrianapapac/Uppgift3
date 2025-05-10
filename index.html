@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webbteknik 2 - Uppgift U3</title>
+    <meta name="Author" content="Mitt namn">
+    <meta name="Description" content="JavaScript-exempel">
+    <meta name="Keywords" content="javascript, webbteknik">
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <link rel="stylesheet" type="text/css" href="css/layout.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/cookies.js"></script>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <h1>Webbteknik 2 — Uppgift U3</h1>
+        <h2>Drag-and-drop</h2>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../U1a/index.html">U1a</a></li>
+            <li><a href="../U1b/index.html">U1b</a></li>
+            <li><a href="../U2a/index.html">U2a</a></li>
+            <li><a href="../U2b/index.html">U2b</a></li>
+            <li><a href="../U3/index.html" class="thisPage">U3</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        
+		<div id="gameInstructions">
+            <h2>Ett litet spel med brickor</h2>
+            <p>Spelplanen består av 16 platser dit du ska dra brickor med siffror. Målet är att i så många rader och kolumner som möjligt få en stigande serie, dvs för varje ruta ska siffran till höger eller under vara större. Totalt finns det 40 brickor med talen 1 till 40. Ur dessa får du fyra brickor i taget och ska dra dem till spelplanen. Du får 1 poäng för varje rad eller kolumn som har en stigande serie. Du kan spela flera gånger och på så sätt samla ihop fler poäng.</p>
+        </div>
+
+		<div id="board"> <!-- Spelplanen -->
+			<!-- I div-elementen används klasserna s1, s2, etc. för att markera de brickor som ingår
+				 i en serie (rad eller kolumn). s1 - s4 är raderna och s5 - s8 är kolumnerna.
+				 Det sista elementet i varje serie, är det element där det ska läggas en bock eller
+				 ett kryss (med en klass), då serien kontrollerats i slutet av spelet. -->
+			<div class="tile s1 s5"></div> <!-- Serie s1 och s5 -->
+			<div class="tile s1 s6"></div> <!-- Serie s1 och s6 -->
+			<div class="tile s1 s7"></div> <!-- Serie s1 och s7 -->
+			<div class="tile s1 s8"></div> <!-- Serie s1 och s8 -->
+            <div class="mark s1"></div>    <!-- Markör för serie s1 -->
+
+			<div class="tile s2 s5"></div>
+			<div class="tile s2 s6"></div>
+			<div class="tile s2 s7"></div>
+			<div class="tile s2 s8"></div>
+            <div class="mark s2"></div>
+
+			<div class="tile s3 s5"></div>
+			<div class="tile s3 s6"></div>
+			<div class="tile s3 s7"></div>
+			<div class="tile s3 s8"></div>
+            <div class="mark s3"></div>
+
+			<div class="tile s4 s5"></div>
+			<div class="tile s4 s6"></div>
+			<div class="tile s4 s7"></div>
+			<div class="tile s4 s8"></div>
+            <div class="mark s4"></div>
+
+			<div class="mark s5"></div>
+            <div class="mark s6"></div>
+            <div class="mark s7"></div>
+            <div class="mark s8"></div>
+		</div> <!-- Slut på spelplanen -->
+
+		<div id="control">
+            <button type="button" id="newGameBtn">Nytt spel</button>
+			<div id="newTiles"> <!-- Nya brickor som väljs slumpmässigt -->
+				<div class="tile"></div>
+				<div class="tile"></div>
+				<div class="tile"></div>
+				<div class="tile"></div>
+			</div>
+			<button type="button" id="newTilesBtn">Nya brickor</button>
+            <div id="message"></div> <!-- Meddelande till användaren -->
+		</div>
+
+        <div id="userInfo">
+			<p>Total poäng: <span id="totPoints">0</span></p>
+			<p>Antal spel: <span id="countGames">0</span></p>
+		</div>
+
+        <img src="img/ghost.png" alt="spöke" id="ghost"> <!-- Används i VG-uppgiften -->
+
+    </main>
+
+    <footer>
+        <p>Uppgift i Webbteknik 2</p>
+    </footer>
+
+</body>
+
+</html>

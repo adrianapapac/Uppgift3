@@ -1,0 +1,183 @@
+@charset "UTF-8";
+/* ----- Grundstil och layout för webbsidan ----- */
+
+:root { /* Variabler för de färger som används */
+	--light: #f7ece0;
+	--middle1: #ffddaa;
+	--middle2: #ffcc66;
+	--dark: #a7420c;
+	--shadow: #999999;
+}
+html, body, nav, header, main, aside, footer, article, section, div {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+	min-height: 100vh; /* Tryck ner sidfoten till botten av fönstret */
+    background-color: var(--light);
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+	display: grid;
+	grid-template-columns: auto minmax(100px,900px) auto;
+	grid-template-rows: min-content min-content auto min-content;
+	grid-template-areas:
+		".	    header	."
+        ".	    nav  	."
+		".	    main	."
+		"footer	footer	footer";
+}
+
+header {
+	grid-area: header;
+	margin-bottom: 0.6rem;
+}
+header h1,
+header h2,
+header h3 {
+	margin: 0;
+	padding: 0.6rem;
+}
+header h1 {
+	background-color: var(--dark);
+	color: var(--light);
+	font-style: italic;
+	font-size: 1rem;
+	padding: 0.4rem 0.6rem;
+}
+header h2 {
+	font-size: 1.2rem;
+}
+
+nav {
+    grid-area: nav;
+}
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 0.2em;
+    display: flex;
+    justify-content: end;
+    gap: 0.5em;
+}
+nav a {
+    display: block;
+    padding: 0.2em 0.4em;
+    background-color: var(--middle1);
+    border: 1px solid var(--dark);
+    border-radius: 6px;
+    box-shadow: 2px 2px var(--shadow);
+    font-size: 0.8em;
+    text-decoration: none;
+    transition: all 0.1s;
+}
+nav a:hover {
+    background-color: var(--middle1);
+    box-shadow: none;
+    translate: 2px 2px;
+}
+nav a.thisPage {
+    background-color: var(--middle2);
+    box-shadow: 1px 1px var(--shadow);
+    translate: 1px 1px;
+}
+
+main {
+	grid-area: main;
+	padding: 0.6rem;
+}
+main h2,
+main h3,
+main h4 {
+	color: var(--dark);
+	font-style: italic;
+}
+main h2 {
+	margin-top: 0;
+	border-bottom: 3px double var(--dark);
+}
+
+footer {
+	grid-area: footer;
+	font-size: 80%;
+	text-align: center;
+	background-image: url(../img/favicon.png);
+    background-repeat: no-repeat;
+    background-size: auto 90%;
+    background-position: calc(100% - 10px) center;
+}
+
+header,
+footer {
+	background-color: var(--middle1);
+	box-shadow: 0px 0px 10px 5px var(--shadow);
+}
+
+hr {
+	border-color: var(--dark);
+	clear: both;
+	margin: 20px 0;
+}
+
+img {
+	max-width: 100%;
+}
+
+a {
+	color: #000;
+}
+a:hover,
+a:active {
+	background-color: var(--middle2);
+}
+a[target=_blank]::after {
+    content: "\029C9";
+    opacity: 0.6;
+    display: inline-block;
+    transform: rotate(90deg);
+    margin-left: 2px;
+}
+
+.alignLeft {
+	float: left;
+}
+.alignRight {
+	float: right;
+}
+
+/* ----- Grundstil för input ----- */
+input[type=text] {
+	font-size: 1em;
+}
+button {
+	background-color: var(--middle1);
+	border-radius: 0.6em;
+	font-size: 1em;
+	cursor: pointer;
+}
+select {
+	background-color: var(--middle1);
+	border-style: outset;
+	font-size: 1em;
+}
+button:hover,
+select:hover {
+	background-color: var(--middle2);
+}
+button:disabled,
+select:disabled {
+    background-color: var(--light);
+}
+
+/* ----- Media queries ----- */
+@media screen and (max-width:440px) {
+	header h1,
+	header h2,
+	header h3 {
+		font-size: 1rem;
+	}
+	footer {
+        background-image: none;
+    }
+}

@@ -1,0 +1,142 @@
+@charset "UTF-8";
+/* ----- Stil för exemplet ----- */
+
+/* Font för brickorna */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+main {
+    display: grid;
+    gap: 2em;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: max-content max-content;
+    grid-template-areas:
+        "gameInstr gameInstr gameInstr userInfo"
+        "board     board     control   control";
+}
+
+/* Spelplanen där de 16 rutorna finns */
+#board {
+    grid-area: board;
+    width: 340px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+/* Alla rutor på spelplanen, inkl. de där det ska läggas bock eller kryss, samt rutorna för nya brickor. */
+#board div,
+#newTiles div {
+    flex-shrink: 0;
+    flex-grow: 0;
+    width: 60px;
+    height: 60px;
+    font-family: "Fredoka One";
+    font-size: 36px;
+    user-select: none;
+    /* Flex inom rutan, för att kunna centrera texten både horisontellt och vertikalt */
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+/* Element som omger rutorna för de fyra nya brickorna */
+#newTiles {
+    width: min-content;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
+
+/* Olika stil för rutorna */
+.tile:empty { /* Ruta som är tom */
+    border: 2px solid #AAC;
+    background-color: transparent;
+}
+
+.tile:not(:empty) { /* Ruta som ej är tom, dvs den innehåller en bricka */
+    border: 2px solid #600;
+    background-color: #FFF;
+    color: #980e0e;
+}
+
+/* Dessa två klasser finns med i HTML-koden, för att markera olika typer av element.
+   De har dock ingen speciell stil här, men kan vara användbara i JS-koden, för att få fram rutorna.
+
+.tile { Alla div-element som är rutor för brickor (både på spelplanen och de fyra nya brickorna)
+}
+.mark { Alla div-element som är plats för bock eller kryss
+}
+*/
+
+/* Dessa två klasser ska användas för att få en bock eller ett kryss, då en serie är kontrollerad. */
+/* Klassen check eller cross läggs då till i elementets classList. */
+.check:before {
+	content: "\02713"; /* En bock */
+	color: #0C0;
+}
+.cross:before {
+	content: "\02717"; /* Ett kryss */
+	color: #C00;
+}
+
+/* Klass för att markera att man dragit över en drop zone */
+/* Läggs till eller tas bort från elementet man drar över */
+#board .hiliteDropZone {
+    background-color: #9C9;
+}
+
+
+/* Övriga delar i layouten */
+#gameInstructions {
+    grid-area: gameInstr;
+}
+
+#userInfo {
+    grid-area: userInfo;
+    justify-self: end;
+	background-color: #FC6;
+	border: 3px solid #666;
+    width: min-content;
+	height: min-content;
+    margin-top: 1.5em;
+    padding: 0.2em;
+	white-space: nowrap;
+	text-align: right;
+	font-size: 1.5em;
+}
+#userInfo p {
+	margin: 0;
+	padding: 0;
+}
+
+#control {
+    grid-area: control;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+}
+
+#message {
+	font-size: 1.3em;
+}
+
+/* ----- Stil för VG-uppgiften ----- */
+main {
+	position: relative; /* För att spöket ska positioneras inom main */
+}
+
+#ghost { /* img-taggen med spöket */
+    position: absolute;
+    top: 120px;
+    left: 210px;
+    width: 300px;
+    opacity: 0.8;
+    visibility: hidden; /* Ändra till visible i JS-koden, då spöket ska visas */
+}
+
+#board .ghostTile { /* Stil för bricka som ska tas bort av spöket */
+	border: 2px solid #600;
+	background-color: #C99;
+}
